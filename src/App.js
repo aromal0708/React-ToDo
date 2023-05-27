@@ -1,36 +1,60 @@
 import { useState } from "react";
 import "./App.css";
-import Todo from "./Components/Todo/Todo";
+
 
 function App() {
 
   const [toDos, setToDos] = useState([]);
-  const [InputText, setInputText] = useState("");
+  const [inputText, setInputText] = useState("");
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setToDos([...toDos, { text: inputText, id: Date.now(), status: false }])
+    setInputText("")
+  }
 
   return (
     <div className="app">
       <div className="mainHeading">
         <h1>ToDo List</h1>
       </div>
-      <div className="subHeading">
-        <br />
-        <h2>Whoop, it's Wednesday 🌝 ☕ </h2>
-      </div>
       <div className="input">
-        <form action="">
-        <input
-          className="todoInput"
-          required
-          type="text"
-          placeholder="🖊️ Add item..."
+        <form onSubmit={(e) => { handleSubmit(e) }} action="">
+          <input
+            className="todoInput"
+            onChange={e => setInputText(e.target.value)}
+            value={inputText}
+            required
+            type="text"
+            placeholder="🖊️ Add item..."
           />
-          </form>
-        <i id="addButton" className="fas fa-plus"></i>
+          <button>
+            <i id="addButton" className="fas fa-plus"></i>
+          </button>
+        </form>
       </div>
 
       <div className="todos">
-        <Todo/>
+        {toDos.map((item) => {
+          return (
+            <div key={item?.id} className="todo">
+              <span className={item.status?'completedText':'todoText'}>{item?.text}</span>
+              <div className="right">
+                <i onClick={() => {
+                  setToDos(toDos.filter(obj =>{
+                    if(obj.id===item.id){
+                      obj.status = !item?.status
+                    }
+                    return obj
+                  }))
+                }} 
+                id='completeButton' className="fa-solid fa-square-check"></i>
+                <i id='closeButton' className="fas fa-times"></i>
+              </div>
+            </div>
+          )
+        })
+        }
       </div>
     </div>
   );
