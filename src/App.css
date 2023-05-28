@@ -24,35 +24,58 @@ body {
   justify-content: center;
 }
 
-.subHeading {
-  height: 100px;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content:flex-start;
-}
 
 .app h1,
 h2 {
   color: white;
 }
 
+.inputWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100px;
+}
+
 .input {
   align-items: center;
   justify-content: space-between;
   overflow: hidden;
-  margin-top: 0.8em;
-  margin-bottom: 25px;
   width: 20em;
   height: 2em;
+  position: fixed;
   background-color: white;
   display: flex;
+  position: relative;
   border-radius: 6px;
   padding: 5px;
 }
 
-form{
+.dropDownBox {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
+}
+
+.dropDown {
+  height: 40px;
+  outline: none;
+  border: none;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+.dropDown option {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+form {
   display: flex;
   align-items: center;
   width: 20em;
@@ -60,21 +83,24 @@ form{
 }
 
 
-button{
+button {
   background: transparent;
   border: none;
   outline: none;
-  
+
 }
+
 .todoInput {
   width: 100%;
   height: 1.6em;
   border-color: transparent;
   outline-color: transparent;
-  padding: 20px;
+  padding: 7px;
+  font-size: 15px;
+  font-weight: 500;
 }
 
-#addButton{
+#addButton {
   cursor: pointer;
   font-size: larger;
   font-weight: 900;
@@ -85,10 +111,11 @@ button{
 .todos {
   display: flex;
   justify-content: flex-start;
-  align-items:center;
+  align-items: center;
   gap: 10px;
   flex-direction: column;
   height: 500px;
+  margin-right: 110px;
 }
 
 
@@ -111,6 +138,7 @@ button{
   color: rgb(39, 35, 35);
   margin-right: 5px;
 }
+
 #completeButton {
   cursor: pointer;
   font-size: larger;
@@ -133,7 +161,7 @@ button{
   color: rgb(0, 0, 0);
 }
 
-.completedText{
+.completedText {
   margin-left: 3px;
   font-size: 17px;
   font-weight: 700;
@@ -151,7 +179,40 @@ button{
   display: none;
 }
 
-.right{
+.right {
   display: flex;
   gap: 10px;
+}
+
+@media screen and (max-width:480px) {
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .inputWrapper {
+    padding: 0px 20px;
+  }
+
+
+  .todos {
+    margin-left: 100px; 
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .todo {
+    width: 300px;
+  }
 }
